@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.8.0;
+pragma solidity >=0.7.0 <0.8.0;
+pragma experimental ABIEncoderV2;
 
 import "./access/Admin.sol";
-import "./math/SafeMath.sol";
-import "./Manager_data.sol";
+import "./lib/SafeMath.sol";
+import "./StorageData.sol";
 
 /*
 企业申请骨干链流程合约
@@ -21,54 +22,65 @@ import "./Manager_data.sol";
 */ 
 contract Logic is StorageStructure,Admin {
 
-    function issue_proposer() public returns(string,uint){
+    function issue_proposer(address _issuer,address nodeAddr) public {
         //user issuer proposer
-        
+        Proposal memory _proposal;
+        _proposal=Proposal({
+            issuer:_issuer,
+            node_address:nodeAddr,
+            issuer_time:block.timestamp
+            //issuer_desc:
+            //proccess_desc:
+            //status:
+        });
+        Proposals.push(_proposal);
         //emit IssueProposer(msg.sender, msg.sender); //second address is node address
     }
-    
 
-    function set_chain_proposer() public returns(string,uint){
-        string chainCode;
+    // function process_proposer() public isadmin returns(string,uint){
+        
+    // }
+    
+    function set_chain_proposer() public returns(string memory,uint){
+        string memory chainCode;
         uint chainId;
         proccess_proposer();
         return (chainCode,chainId);
     }
 
-    function add_chain_info(address addr,string code,uint id,string _name) public isadmin {
-        require(chainInfo[addr].chain_owner == address(0), "Chain exist!");
-        chainInfo[addr]=ChainObject({
-            chain_owner:addr,
+    function add_chain_info(address chain_addr,string memory code,uint id,string memory _name,address owner_addr) public isadmin {
+        //require(chainInfo[addr].chain_owner == address(0), "Chain exist!");
+        chainInfo[chain_addr]=ChainObject({
             chain_code:code,
             chain_id:id,
             name:_name,
+            chain_owner:owner_addr,
             time:block.timestamp
         });
         chainAmount++;
     }
   
-    function remove_chain_info(string chainCode) public isadmin {
-      
-       delete chainInfo[chainCode];
+    function remove_chain_info(address addr) public isadmin {
+       
+       delete chainInfo[addr];
        chainAmount--;
     }
     
     function update_chain_info()public isadmin {
-
+            
     }    
 
-    function get_chain_info(address addr) view public returns(ChainObject){
+    function get_chain_info(address addr) view public returns(ChainObject memory){
         // require(chinInfo[addr].status == chainState.enable,"Chain disable!");
         // require(isadmin || msg.sender == chainInfo[addr].chain_owner, "Have no power to get!");
         return chainInfo[addr];
     }
     
-    function add_chain_user(string _name,string _bid,string _email,string _region,string _mobile) public {
+    function add_chain_user(string memory _name,address _addr,string memory _email,string memory _region,string memory _mobile) public {
         // require(chainInfo[addr].chain_owner != address(0), "Chain not exist!");
         // require(chainInfo[addr].chain_owner == msg.sender, "Have no power to get!");
-        userInfo[_bid]=UserObject({
+        userInfo[_addr]=UserObject({
             name:_name,
-            bid:_bid,
             email:_email,
             region:_region,
             mobile:_mobile
@@ -77,75 +89,105 @@ contract Logic is StorageStructure,Admin {
     }
 
     
-    function remove_cahin_user () public {
-        
+    function remove_cahin_user (address _addr) public {
+        delete userInfo[_addr];
+        userAmount--;
     }
     
     function update_chain_user()public{
-
+        
     }
 
-    function get_chain_user(address addr) view public returns(UserObject){
-        return userInfo[addr];
+    function get_chain_user(address _addr) view public returns( UserObject memory){
+        return userInfo[_addr];
     }
 
-    function add_chain_contract(string _name,address addr,string _type,string bid,bytes byteCode,string _abi,bytes _hash) public {
-        contractInfo[addr]=ContractObject({
+    function add_chain_contract(string memory _name,address _contractAddr,string memory _type,address ownerAddr,string memory _time,bytes memory byteCode,string memory _abi,bytes memory _hash) public {
+        contractInfo[_contractAddr]=ContractObject({
             name:_name,
-            contract_address:adrr,
             contract_type:_type,
-            owner_bid:bid,
-            contract_time:block.timestamp,
+            owner_address:ownerAddr,
+            contract_time:_time,
             byte_code:byteCode,
             abi:_abi,
-            contract_hash:_hash,
-            status:contractState.enable
+            contract_hash:_hash
         });
         contractAmount++;
     }
 
-    function remove_chain_contract() public {
-
+    function remove_chain_contract(address _addr) public {
+        delete contractInfo[_addr];
+        contractAmount--;
     }
 
     function update_chain_contract() public {
 
     }
 
-    function get_chain_contract() public {
-        
+    function get_chain_contract(address _addr) public returns(ContractObject memory) {
+        return contractInfo[_addr];
     }
 
-    function add_chain_node() public {
+    // function add_chain_node(address _addr,string memory _code,uint memory _id,string memory _name,string memory _version,string memory) public {
+    //     nodeInfo[_addr]=NodeObject({
+    //         chain_code: _code,
+    //         chain_id:_id,
+    //         name:_name,
+    //         version:_verison,
+    //         algorithm:_algorithm,
+    //         industry:_industry,
+    //         sort:_sort,
+    //         scence:_sence,
+    //         website:_website,
+    //         browse:_browse,
+    //         node_json:_nodeJson,
+    //         service_ip:_ip,
+    //         http_port:_port,
+    //         config_json:configJson,
+    //         log:_log,
+    //         time:block.timestamp
+    //     });
+    //     nodeAmount--;
+    // }
 
-    }
-
-    function remove_cahin_node() public{
-
+    function remove_cahin_node(address _addr) public{
+        delete nodeInfo[_addr];
+        nodeAmount--;
     }
 
     function update_chain_node() public{
 
     }
 
-    function get_chain_node() public {
-
+    function get_chain_node(address _addr) public returns(NodeObject memory) {
+        return nodeInfo[_addr];
+    }
+    
+    function add_chain_blockheader(address _addr,bytes memory _hash,uint  _num,string memory _person,string memory _time) public {
+        //require(msg.sender );
+        BlockHeaderObject memory _BlockHeaderObject;
+        _BlockHeaderObject=BlockHeaderObject({
+            chain_address:_addr,
+            blockheader_hash:_hash,
+            transaction_num:_num,
+            block_person:_person,
+            block_time:_time
+        });
+        blockheaderInfo.push(_BlockHeaderObject);
+        blockHeaderAmount++;
     }
 
-    function add_chain_blockheader() public {
+    // function remove_chain_blockheader(bytes _hash) public {
+    //      delete blockheaderInfo[_hash];
+    //      blockHeaderAmount--;
+    // }     
 
-    }
+    // function update_chain_blockheader() public {
 
-    function remove_chain_blockheader() public {
+    // }   
 
-    }     
-
-    function update_chain_blockheader() public {
-
-    }   
-
-    function get_chain_blockheader() public {
-
+    function get_chain_blockheader(uint _number) public returns(BlockHeaderObject memory) {
+         return blockheaderInfo[_number];
     }
 
     function issue_proposer() public  {

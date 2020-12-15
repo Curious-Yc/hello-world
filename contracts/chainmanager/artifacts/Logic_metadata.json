@@ -1,0 +1,682 @@
+{
+	"compiler": {
+		"version": "0.4.26+commit.4563c3fc"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "update_chain_node",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "remove_cahin_user",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "update_chain_user",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"name": "_addr",
+						"type": "address"
+					},
+					{
+						"name": "_email",
+						"type": "string"
+					},
+					{
+						"name": "_region",
+						"type": "string"
+					},
+					{
+						"name": "_mobile",
+						"type": "string"
+					}
+				],
+				"name": "add_chain_user",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "get_chain_contract",
+				"outputs": [
+					{
+						"components": [
+							{
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"name": "contract_type",
+								"type": "string"
+							},
+							{
+								"name": "owner_address",
+								"type": "address"
+							},
+							{
+								"name": "contract_time",
+								"type": "string"
+							},
+							{
+								"name": "byte_code",
+								"type": "bytes"
+							},
+							{
+								"name": "abi",
+								"type": "string"
+							},
+							{
+								"name": "contract_hash",
+								"type": "bytes"
+							}
+						],
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_issuer",
+						"type": "address"
+					},
+					{
+						"name": "nodeAddr",
+						"type": "address"
+					}
+				],
+				"name": "issue_proposer",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "get_chain_node",
+				"outputs": [
+					{
+						"components": [
+							{
+								"name": "node_address",
+								"type": "address"
+							},
+							{
+								"name": "chain_code",
+								"type": "string"
+							},
+							{
+								"name": "chain_id",
+								"type": "uint256"
+							},
+							{
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"name": "version",
+								"type": "string"
+							},
+							{
+								"name": "algorithm",
+								"type": "string"
+							},
+							{
+								"name": "industry",
+								"type": "string"
+							},
+							{
+								"name": "sort",
+								"type": "string"
+							},
+							{
+								"name": "scene",
+								"type": "string"
+							},
+							{
+								"name": "website",
+								"type": "string"
+							},
+							{
+								"name": "browse",
+								"type": "string"
+							},
+							{
+								"name": "node_json",
+								"type": "string"
+							},
+							{
+								"name": "service_ip",
+								"type": "string"
+							},
+							{
+								"name": "http_port",
+								"type": "uint256"
+							},
+							{
+								"name": "config_json",
+								"type": "string"
+							},
+							{
+								"name": "log",
+								"type": "string"
+							},
+							{
+								"name": "time",
+								"type": "uint256"
+							}
+						],
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "update_chain_contract",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "remove_admin",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "proccess_proposer",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "issue_proposer",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_number",
+						"type": "uint256"
+					}
+				],
+				"name": "get_chain_blockheader",
+				"outputs": [
+					{
+						"components": [
+							{
+								"name": "chain_address",
+								"type": "address"
+							},
+							{
+								"name": "blockheader_hash",
+								"type": "bytes"
+							},
+							{
+								"name": "transaction_num",
+								"type": "uint256"
+							},
+							{
+								"name": "block_person",
+								"type": "string"
+							},
+							{
+								"name": "block_time",
+								"type": "string"
+							}
+						],
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "update_chain_info",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_addr",
+						"type": "address"
+					},
+					{
+						"name": "_hash",
+						"type": "bytes"
+					},
+					{
+						"name": "_num",
+						"type": "uint256"
+					},
+					{
+						"name": "_person",
+						"type": "string"
+					},
+					{
+						"name": "_time",
+						"type": "string"
+					}
+				],
+				"name": "add_chain_blockheader",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "initialize",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "remove_chain_contract",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "set_chain_proposer",
+				"outputs": [
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_addr",
+						"type": "address"
+					},
+					{
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "add_admin",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "remove_chain_info",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "remove_cahin_node",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"name": "_contractAddr",
+						"type": "address"
+					},
+					{
+						"name": "_type",
+						"type": "string"
+					},
+					{
+						"name": "ownerAddr",
+						"type": "address"
+					},
+					{
+						"name": "_time",
+						"type": "string"
+					},
+					{
+						"name": "byteCode",
+						"type": "bytes"
+					},
+					{
+						"name": "_abi",
+						"type": "string"
+					},
+					{
+						"name": "_hash",
+						"type": "bytes"
+					}
+				],
+				"name": "add_chain_contract",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "get_chain_info",
+				"outputs": [
+					{
+						"components": [
+							{
+								"name": "chain_code",
+								"type": "string"
+							},
+							{
+								"name": "chain_id",
+								"type": "uint256"
+							},
+							{
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"name": "chain_owner",
+								"type": "address"
+							},
+							{
+								"name": "time",
+								"type": "uint256"
+							}
+						],
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "chain_addr",
+						"type": "address"
+					},
+					{
+						"name": "code",
+						"type": "string"
+					},
+					{
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"name": "owner_addr",
+						"type": "address"
+					}
+				],
+				"name": "add_chain_info",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "get_chain_user",
+				"outputs": [
+					{
+						"components": [
+							{
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"name": "email",
+								"type": "string"
+							},
+							{
+								"name": "region",
+								"type": "string"
+							},
+							{
+								"name": "mobile",
+								"type": "string"
+							}
+						],
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"localhost/contracts/chainmanager/Manager_logic.sol": "Logic"
+		},
+		"evmVersion": "byzantium",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"localhost/contracts/chainmanager/Manager_logic.sol": {
+			"keccak256": "0x235b611884fc705074f47824047a9199cab66d33c66957853151c533de674b59",
+			"urls": [
+				"bzzr://0b2cd225dd816771b7f0b2b959b1c207190fc3c7db38555f609058d354d9b641"
+			]
+		},
+		"localhost/contracts/chainmanager/StorageData.sol": {
+			"keccak256": "0x73d1528780d12f2226860fbd4d83483b3e4e87503dec2df0baf632876560ffd1",
+			"urls": [
+				"bzzr://1618b660a03633ffc39f6c407655a7c8a04f7f1f7580f00b81ecd54d248cdf31"
+			]
+		},
+		"localhost/contracts/chainmanager/access/Admin.sol": {
+			"keccak256": "0x110c3d3c5a42d830e47f2e8fed533fd97af593031db1e807f90c13d9518cbe96",
+			"urls": [
+				"bzzr://141a1166b8aa6120fed56cdff4fbc5728245606d15419d187762f6d33b8ac226"
+			]
+		},
+		"localhost/contracts/chainmanager/access/Ownable.sol": {
+			"keccak256": "0xb0420d45fe9b1ac4f7fb3728c59e95905a15bcf7e75c2c097fb4bc656e73f3ea",
+			"urls": [
+				"bzzr://44533a8d4f1eb8c83565f63fbf97be3206f458daf25aa915c20fb2947102c546"
+			]
+		},
+		"localhost/contracts/chainmanager/lib/SafeMath.sol": {
+			"keccak256": "0xadcf9af55adb17ed5177471eead40b4e88fd451b669aa422205cf8dbb83508fb",
+			"urls": [
+				"bzzr://54c402c690b4526f2eee5074cf6e163d50d68914805f506d3ecbcac82bdfc33b"
+			]
+		}
+	},
+	"version": 1
+}

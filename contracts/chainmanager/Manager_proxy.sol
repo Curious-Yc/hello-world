@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.8.0;
 
-import "./Manager_data.sol";
 /*
 企业申请骨干链流程合约
 
@@ -19,7 +18,7 @@ import "./Manager_data.sol";
 3.管理员和合约创建者有权力添加/删除/停用链
 4.申请企业能停用自己的链
 */
-contract Proxy is StorageStructure {
+contract Proxy {
      bool internal _initialized;
 
     //确保只有所有者可以运行这个函数

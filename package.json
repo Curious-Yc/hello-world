@@ -1,0 +1,23 @@
+{
+  "name": "Manager",
+  "version": "1.0.0",
+  "description": "management bif contract",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@openzeppelin/contracts": "^3.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.teleinfo.cn/bif/bif-contract.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

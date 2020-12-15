@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.8.0;
+pragma solidity >=0.7.0 <0.8.0;
 
 /*
 企业申请骨干链流程合约
@@ -17,64 +17,52 @@ pragma solidity >=0.4.22 <0.8.0;
 4.申请企业能停用自己的链
 */
 contract StorageStructure {
- //  uint256 node_count = 0;
- //  uint256 proposal_count = 0;
-    
-  // event IssueProposer(address issuer, address node_address);
-  // event ProccessProposer(address issuer, address node_address);
-  // event AddNode(address issuer, address node_address);
-  // event RemoveNode(address issuer, address node_address);
-  // event UpdateNodeInfo(address issuer, address node_address);
-  // event UpdateNodeProfile(address issuer, address node_address);
-  
 
     struct Proposal {
       address issuer;
       address node_address;
-      uint require_amount;
       uint issuer_time; //filled by block.timestamp
-      uint proccessed_time;
-      string issuer_desc;
-      string proccess_desc;
-      uint8 status; // 0 unprocessed, 1 approved, 2 rejected
+      // uint proccessed_time;
+      // string issuer_desc;
+      // string proccess_desc;
+      // uint8 status; // 0 unprocessed, 1 approved, 2 rejected
     }
+
+    Proposal[] Proposals;
+    uint internal proposalAmount;
      
     //子链信息；
     struct ChainObject {
-      address chain_address;
       string chain_code;
       uint chain_id;
       string name;
+      address chain_owner;
       uint time;
     } 
 
-    mapping(string => ChainObject) internal chainInfo;
+    mapping(address => ChainObject) internal chainInfo;
     uint internal chainAmount;
 
     //用户信息；
     struct UserObject {
       string name;
-      string bid;
       string email;
       string region;
       string mobile; 
     }
 
-    mapping(string => UserObject) internal userInfo;
+    mapping(address => UserObject) internal userInfo;
     uint internal userAmount;
 
     //合约信息；
     struct ContractObject {
       string name;
-      address contract_address;
-      string constract_type;
-      string owner_bid; //合约创建人的bid;
+      string contract_type;
+      address owner_address; 
       string contract_time;
-      bytes byte_code; //合约字节码;
+      bytes byte_code; 
       string abi;
-      bytes constract_hash; //上报hash;
-      uint8 status;  //合约状态; 0 proccessing 1 enable, 2 disable 
-      string constract_time; //上报时间;
+      bytes contract_hash; 
     }
 
     mapping(address => ContractObject) internal contractInfo;
@@ -82,15 +70,38 @@ contract StorageStructure {
 
     //区块头信息；
     struct BlockHeaderObject {
-      bytes header_hash; 
+      address chain_address;
+      bytes blockheader_hash;
       uint transaction_num;
-      uint block_time;
+      string block_person;
+      string block_time;
     }
-
-    mapping(address => ContractObject) internal blockHeaderInfo;
+     
+    BlockHeaderObject[] blockheaderInfo;
     uint internal blockHeaderAmount;
 
     //节点信息
+    struct NodeObject {
+      string chain_code;
+      uint chain_id;
+      string name;
+      string version;
+      string algorithm;
+      //string industry;
+      //string sort;
+      //string scene;
+      //string website;
+      //string browse;
+      //string node_json;
+      //string service_ip;
+      //uint http_port;
+      //string config_json;
+      //string log;
+      //uint time;
+    }
+
+    mapping(address => NodeObject) internal nodeInfo;
+    uint internal nodeAmount;
   
    //mapping(address => NodeInfo) public NodeInfos;
   //  mapping(address => NodeProfile) public NodeProfiles;
