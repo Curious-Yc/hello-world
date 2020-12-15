@@ -22,7 +22,7 @@ contract Vote {
     Candidate[] public candidates;  //投票人集合
     mapping(address => Voter) public voters; //投票人集合
 
-    constructor (string[] memory candidatesNames) public{
+    constructor (string[] memory candidatesNames) public {
         admin=msg.sender;
 
         //每个人的名字生成一个候选人，添加到候选人集合中 ["aaa","bbb","ccc","ddd"]
@@ -87,17 +87,18 @@ contract Vote {
 
         candidates[voteNum].voteCount+=voter.weight;
     }
+    
+    //谁赢了
+    // function whoWin()public view returns(string memory,uint){
+    //     string memory winner;
+    //     uint winerVoteCount;
 
-    function whoWin()public view returns(string memory,uint){
-        string memory winner;
-        uint winerVoteCount;
-
-        for (uint i=0;i<candidates.length;i++){
-            if (candidates[i].voteCount>winerVoteCount){
-              winner=candidates[i].name;
-              winerVoteCount=candidates[i].voteCount;
-            }
-        }
-      return (winner,winerVoteCount);
-    }
+    //     for (uint i=0;i<candidates.length;i++){
+    //         if (candidates[i].voteCount>winerVoteCount){
+    //           winner=candidates[i].name;
+    //           winerVoteCount=candidates[i].voteCount;
+    //         }
+    //     }
+    //   return (winner,winerVoteCount);
+    // }
 }
