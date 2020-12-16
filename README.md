@@ -1,3 +1,3 @@
-# hello-world
+# git test
 
-I want to be a good men!
+just study git!
