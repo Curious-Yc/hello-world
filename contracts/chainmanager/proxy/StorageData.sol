@@ -21,7 +21,8 @@ contract StorageStructure {
     struct Proposal {
       address issuer;
       address node_address;
-      uint issuer_time; //filled by block.timestamp
+      uint issuer_time; 
+      bool isSlove;
       // uint proccessed_time;
       // string issuer_desc;
       // string proccess_desc;
@@ -102,8 +103,4 @@ contract StorageStructure {
 
     mapping(address => NodeObject) internal nodeInfo;
     uint internal nodeAmount;
-  
-   //mapping(address => NodeInfo) public NodeInfos;
-  //  mapping(address => NodeProfile) public NodeProfiles;
-  //  mapping(address => Proposal) public Proposals;
 }

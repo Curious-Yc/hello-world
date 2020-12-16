@@ -1,9 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.8.0;
-pragma experimental ABIEncoderV2;
 
-import "./access/Admin.sol";
-import "./lib/SafeMath.sol";
 import "./StorageData.sol";
 
 /*
@@ -20,8 +17,8 @@ import "./StorageData.sol";
 3.管理员和合约创建者有权力添加/删除/停用链
 4.申请企业能停用自己的链
 */ 
-contract Manager is StorageStructure,Admin {
-    event issuerProposer(address issuer);
+contract Manager is StorageStructure {
+    event issueProposal(address issuer);
 
     event addChainInfo(address issuer,address chain_address);
     event removeChainInfo(address issuer,address chain_address);
@@ -39,24 +36,33 @@ contract Manager is StorageStructure,Admin {
     event removeNodeInfo(address issuer,address node_address);
     event updateNodeInfo(address issuer,address node_address);
 
-    event addBlockHeaderInfo(address issuer);
+    event addBlockHeaderInfo(address issuer,address chain_address);
     event removeBlockHeaderInfo(address issuer,uint blockheader_number);
+    event updateBlockHeaderInfo(address issuer,uint blockheader_number);
   
 
 
-    function issue_proposer(Proposal memory _proposal) public {
-        //user issuer proposer
+    function issue_proposal(address _issuer,uint _time) public {
+        Proposal memory _proposal;
+        _proposal=Proposal({
+            issuer_person:_issuer,
+            issuer_time:_time,
+            proccessed_time:uint(0),
+            status:0
+        });
         Proposals.push(_proposal);
-        emit issuerProposer(msg.sender);
+        emit issueProposal(msg.sender);
         proposalAmount++;
-        //emit IssueProposer(msg.sender, msg.sender); //second address is node address
     }
 
-    // function process_proposer(uint _num,bool isOk) public isadmin returns(string memory chain_code,uint memory chain_id){
-    //     if (bool==true) {
-    //         returns 
-    //     }
-    // }
+    function proccess_proposal(uint _num) public returns(string memory chain_code,uint chain_id){
+        require(Proposals[_num].status == uint8(proposalState.unproccessed), "issuer resloved!");
+        Proposals[_num].status=1;
+        Proposals[_num].proccessed_time=block.timestamp;
+        //chain_code,chain_id 如何产生；
+        return (chain_code, chain_id);
+
+    }
 
     // 对子链信息的操作
     function add_chain_info(address chain_addr,string memory _code,uint _id,string memory _name,address owner_addr) public  {
@@ -88,7 +94,7 @@ contract Manager is StorageStructure,Admin {
         emit updateChainInfo(msg.sender,chain_addr);
     }    
 
-    function get_chain_info(address chain_addr) view public returns(string memory,uint,string,address,uint) {
+    function get_chain_info(address chain_addr) view public returns(string memory,uint,string memory,address,uint) {
         return (chainInfo[chain_addr].chain_code,chainInfo[chain_addr].chain_id,chainInfo[chain_addr].name,chainInfo[chain_addr].chain_owner,chainInfo[chain_addr].time);
     }
     
@@ -160,18 +166,18 @@ contract Manager is StorageStructure,Admin {
         emit updateContractInfo(msg.sender,contract_addr);
     }
 
-    function get_chain_contract(address contract_addr) public view returns(ContractObject memory) {
+    function get_chain_contract(address contract_addr) public view returns(string memory,string memory,address,uint,bytes memory,string memory,bytes memory) {
         return (contractInfo[contract_addr].name,contractInfo[contract_addr].contract_type,contractInfo[contract_addr].owner_address,
-        contractInfo[contract_addr].time,contractInfo[contract_addr].byte_code,contractInfo[contract_addr].abi,contractInfo[contract_addr].contract_hash);
+        contractInfo[contract_addr].contract_time,contractInfo[contract_addr].byte_code,contractInfo[contract_addr].abi,contractInfo[contract_addr].contract_hash);
     }
     
     //对节点的操作
-    function add_chain_node(address node_addr,string memory _code,uint memory _id,string memory _name,string memory _version,string memory _algorithm) public {
+    function add_chain_node(address node_addr,string memory _code,uint _id,string memory _name,string memory _version,string memory _algorithm) public {
         nodeInfo[node_addr]=NodeObject({
             chain_code: _code,
             chain_id:_id,
             name:_name,
-            version:_verison,
+            version:_version,
             algorithm:_algorithm
             // industry:_industry,
             // sort:_sort,
@@ -195,12 +201,12 @@ contract Manager is StorageStructure,Admin {
         nodeAmount--;
     }
 
-    function update_chain_node(address node_addr,string memory _code,uint memory _id,string memory _name,string memory _version,string memory _algorithm) public{
+    function update_chain_node(address node_addr,string memory _code,uint _id,string memory _name,string memory _version,string memory _algorithm) public{
         nodeInfo[node_addr]=NodeObject({
             chain_code: _code,
             chain_id:_id,
             name:_name,
-            version:_verison,
+            version:_version,
             algorithm:_algorithm
             // industry:_industry,
             // sort:_sort,
@@ -222,7 +228,7 @@ contract Manager is StorageStructure,Admin {
     }
     
     //对区块头的操作
-    function add_chain_blockheader(address _chainAddr,bytes memory _hash,uint  _transationNum,string memory _person,uint memory _time) public {
+    function add_chain_blockheader(address _chainAddr,bytes memory _hash,uint  _transationNum,string memory _person,uint _time) public {
         BlockHeaderObject memory _BlockHeaderObject;
         _BlockHeaderObject=BlockHeaderObject({
             chain_address:_chainAddr,
@@ -236,7 +242,7 @@ contract Manager is StorageStructure,Admin {
         blockHeaderAmount++;
     }
     
-    function update_chain_blockheader(uint _num,address _chainAddr,bytes memory _hash,uint  _transationNum,string memory _person,uint memory _time) public {
+    function update_chain_blockheader(uint _num,address _chainAddr,bytes memory _hash,uint  _transationNum,string memory _person,uint _time) public {
         blockheaderInfo[_num].chain_address=_chainAddr;
         blockheaderInfo[_num].blockheader_hash=_hash;
         blockheaderInfo[_num].transaction_num=_transationNum;

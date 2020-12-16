@@ -1,0 +1,30 @@
+[33mcommit c2c7a26f7a017e2d1bc6c98b09dfd85c1ba2b461[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: liuyuanchao <19125033@bjtu.edu.cn>
+Date:   Wed Dec 16 10:44:22 2020 +0800
+
+    取消结构体传参，反值
+
+[33mcommit 275f149322e88cffee9ad1eac9fea241587ac5bd[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: liuyuanchao <19125033@bjtu.edu.cn>
+Date:   Tue Dec 15 17:15:15 2020 +0800
+
+    bit manager_contract
+
+[33mcommit 1932c84c4ed3e41d9218bfeebe877d49784a256d[m
+Merge: 35cf033 9c6ade5
+Author: liuyuanchao <19125033@bjtu.edu.cn>
+Date:   Mon Dec 14 18:07:46 2020 +0800
+
+    Merge branch 'master' of https://git.teleinfo.cn/bif/bif-contract
+
+[33mcommit 35cf0331c9bf5b62d9eb70d6f86539d0d629be7f[m
+Author: liuyuanchao <19125033@bjtu.edu.cn>
+Date:   Mon Dec 14 18:05:45 2020 +0800
+
+    add bif-contract project
+
+[33mcommit 9c6ade5d79a58505d7690cb209b302eb13b7a808[m
+Author: zhouhoufa <zhouhoufa@teleinfo.cn>
+Date:   Mon Dec 14 02:28:10 2020 +0000
+
+    Initial commit
